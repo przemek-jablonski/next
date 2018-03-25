@@ -20,14 +20,16 @@ class NextPrimaryViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCellReuseIdentifier")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCellReuseIdentifier") as! EventTableViewCell
         let event = events?[indexPath.row]
-        if (cell != nil && event != nil) {
-            cell!.textLabel?.text = event!.title
-            cell!.detailTextLabel?.text = "Calendar: \(event!.calendar.title)"
-            cell!.backgroundColor = UIColor(cgColor: event!.calendar.cgColor).withAlphaComponent(0.5)
+        if (event != nil) {
+            cell.setEvent(date: event!.occurrenceDate, title: event!.title, calendarTitle: event!.calendar.title, calendarColour: event!.calendar.cgColor)
+//            cell!.textLabel?.text = event!.title
+//            event!.date
+//            cell!.detailTextLabel?.text = "Calendar: \(event!.calendar.title)"
+//            cell!.backgroundColor = UIColor(cgColor: event!.calendar.cgColor).withAlphaComponent(0.5)
         }
-        return cell! //todo: !, this may be null
+        return cell
     }
     
 

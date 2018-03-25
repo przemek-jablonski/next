@@ -23,22 +23,56 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCellReuseIdentifier" id="q2M-xj-ueU">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCellReuseIdentifier" rowHeight="88" id="q2M-xj-ueU" customClass="EventTableViewCell" customModule="next" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q2M-xj-ueU" id="6bS-ER-2wF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wk-9c-xD7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gJE-Zp-Kjz">
+                                                    <rect key="frame" x="5" y="0.0" width="365" height="87.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="24th September 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsJ-yF-8wz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="365" height="33.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="Event Title Suuuper Long etc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkN-Pt-beP">
+                                                            <rect key="frame" x="0.0" y="33.5" width="365" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Calendar: Super Calendar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAV-f9-e9c">
+                                                            <rect key="frame" x="0.0" y="54" width="365" height="33.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="QkN-Pt-beP" firstAttribute="top" secondItem="AsJ-yF-8wz" secondAttribute="bottom" constant="5" id="OpV-nW-1qq"/>
+                                                        <constraint firstItem="QkN-Pt-beP" firstAttribute="centerX" secondItem="gJE-Zp-Kjz" secondAttribute="centerX" id="VFg-5g-K7Q"/>
+                                                        <constraint firstItem="QkN-Pt-beP" firstAttribute="centerY" secondItem="gJE-Zp-Kjz" secondAttribute="centerY" id="WvH-jd-BY4"/>
+                                                        <constraint firstItem="gAV-f9-e9c" firstAttribute="top" secondItem="QkN-Pt-beP" secondAttribute="bottom" constant="5" id="ehG-Ph-tXJ"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gJE-Zp-Kjz" firstAttribute="leading" secondItem="6bS-ER-2wF" secondAttribute="leading" constant="5" id="0L8-fA-NOS"/>
+                                                <constraint firstItem="gJE-Zp-Kjz" firstAttribute="top" secondItem="6bS-ER-2wF" secondAttribute="top" id="DKW-hI-kK9"/>
+                                                <constraint firstAttribute="bottom" secondItem="gJE-Zp-Kjz" secondAttribute="bottom" id="I3F-tF-McL"/>
+                                                <constraint firstAttribute="trailing" secondItem="gJE-Zp-Kjz" secondAttribute="trailing" constant="5" id="LAo-x8-hf9"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <viewLayoutGuide key="safeArea" id="r87-xe-FFU"/>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="AsJ-yF-8wz" id="tRg-cU-0Qy"/>
+                                            <outlet property="detailsLabel" destination="gAV-f9-e9c" id="Bzm-4Y-az9"/>
+                                            <outlet property="titleLabel" destination="QkN-Pt-beP" id="zUC-lO-UZN"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
