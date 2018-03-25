@@ -9,9 +9,31 @@
 import UIKit
 import EventKit
 
-class NextPrimaryViewController: UIViewController {
+class NextPrimaryViewController: UIViewController, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return events?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCellReuseIdentifier")
+        let event = events?[indexPath.row]
+        if (cell != nil && event != nil) {
+            cell!.textLabel?.text = event!.title
+            cell!.detailTextLabel?.text = "Calendar: \(event!.calendar.title)"
+            cell!.backgroundColor = UIColor(cgColor: event!.calendar.cgColor).withAlphaComponent(0.5)
+        }
+        return cell! //todo: !, this may be null
+    }
+    
 
+    @IBOutlet weak var eventsTableView: UITableView!
     lazy var eventStore: EKEventStore = EKEventStore()
+    var events: [EKEvent]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +51,14 @@ class NextPrimaryViewController: UIViewController {
             NSLog("calendar[\(index)]: \(calendar)")
         }
         
-        let events = eventStore.events(matching: eventStore.predicateForEvents(withStart: Date(), end: Date().addingTimeInterval(60*60*24*7), calendars: nil))
+        events = eventStore.events(matching: eventStore.predicateForEvents(withStart: Date(), end: Date().addingTimeInterval(60*60*24*7), calendars: nil))
         NSLog("events: \(events)")
         
         eventStore.fetchReminders(matching: eventStore.predicateForReminders(in: nil)) { (reminder) in
             NSLog("Reminder: \(String(describing: reminder))\n")
         }
+        
+        eventsTableView.dataSource = self
     }
     
     private func checkAuthorizationStatus(eventStore: EKEventStore) -> Bool {
