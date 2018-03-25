@@ -16,9 +16,9 @@ class NextPrimaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSLog("eventStore: %@", eventStore)
-        let privacyAuthorized = checkAuthorizationStatus(eventStore: eventStore)
+        _ = checkAuthorizationStatus(eventStore: eventStore)
         eventStore.requestAccess(to: EKEntityType.event, completion: { (granted, error) in
-            NSLog("requesting access for: event, granted: \(granted), error: \(error)")
+            NSLog("requesting access for: event, granted: \(granted), error: \(String(describing: error))")
         })
         eventStore.requestAccess(to: EKEntityType.reminder, completion: { (granted, error) in
             NSLog("requesting access for: reminder, granted: \(granted), error: \(String(describing: error))")
@@ -33,7 +33,7 @@ class NextPrimaryViewController: UIViewController {
         NSLog("events: \(events)")
         
         eventStore.fetchReminders(matching: eventStore.predicateForReminders(in: nil)) { (reminder) in
-            NSLog("Reminder: \(reminder)\n")
+            NSLog("Reminder: \(String(describing: reminder))\n")
         }
     }
     
@@ -47,7 +47,11 @@ class NextPrimaryViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    
+    @IBAction func showAlert() {
+        
+    }
 
 }
 
