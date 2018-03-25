@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class ViewController: UIViewController {
+class NextPrimaryViewController: UIViewController {
 
     lazy var eventStore: EKEventStore = EKEventStore()
     
@@ -24,7 +24,17 @@ class ViewController: UIViewController {
             NSLog("requesting access for: reminder, granted: \(granted), error: \(String(describing: error))")
         })
         let calendars = eventStore.calendars(for: EKEntityType.event)
-        NSLog("calendars: %@", calendars)
+        
+        for (index, calendar) in calendars.enumerated() {
+            NSLog("calendar[\(index)]: \(calendar)")
+        }
+        
+        let events = eventStore.events(matching: eventStore.predicateForEvents(withStart: Date(), end: Date().addingTimeInterval(60*60*24*7), calendars: nil))
+        NSLog("events: \(events)")
+        
+        eventStore.fetchReminders(matching: eventStore.predicateForReminders(in: nil)) { (reminder) in
+            NSLog("Reminder: \(reminder)\n")
+        }
     }
     
     private func checkAuthorizationStatus(eventStore: EKEventStore) -> Bool {
